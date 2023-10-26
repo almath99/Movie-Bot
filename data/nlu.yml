@@ -282,44 +282,44 @@ nlu:
 #     - movie genre change
 
 
-- intent: request_rate_movie
-  examples: |
-    - I want to rate a movie
-    - I would like to rate a movie.
-    - Can I rate a movie?
-    - Rate movie.
-    - Rate
-    - I want to rate 
-    - How can I rate a movie?
-    - Please let me rate a movie
-    - Rate a film
-    - I want to rate a film.
-    - Can I rate a film?
-    - I'm interested in rating movies
+# - intent: request_rate_movie
+#   examples: |
+#     - I want to rate a movie
+#     - I would like to rate a movie.
+#     - Can I rate a movie?
+#     - Rate movie.
+#     - Rate
+#     - I want to rate 
+#     - How can I rate a movie?
+#     - Please let me rate a movie
+#     - Rate a film
+#     - I want to rate a film.
+#     - Can I rate a film?
+#     - I'm interested in rating movies
 
-- intent: movie_rate
-  examples: |
-    - Rate [The Movie Name](movie_rate)
-    - I want to rate [Movie XYZ](movie_rate)
-    - Rate this movie: [The Movie Title](movie_rate)
-    - How would you rate [The Movie](movie_rate)?
-    - [Give] a rating to [The Movie](movie_rate)
-    - I'd like to rate [The Film](movie_rate)
-    - Rate the movie [Name](movie_rate)
-    - [The Movie Name](movie_rate) - [Rate]
-    - [The Movie Name](movie_rate)
-    - Can I rate [The Movie](movie_rate)?
+# - intent: movie_rate
+#   examples: |
+#     - Rate [The Movie Name](movie_rate)
+#     - I want to rate [Movie XYZ](movie_rate)
+#     - Rate this movie: [The Movie Title](movie_rate)
+#     - How would you rate [The Movie](movie_rate)?
+#     - [Give] a rating to [The Movie](movie_rate)
+#     - I'd like to rate [The Film](movie_rate)
+#     - Rate the movie [Name](movie_rate)
+#     - [The Movie Name](movie_rate) - [Rate]
+#     - [The Movie Name](movie_rate)
+#     - Can I rate [The Movie](movie_rate)?
 
 
-- intent: rate_movie
-  examples: |
-    - [1](rate)
-    - [2](rate)
-    - [3](rate)
-    - [4](rate)
-    - [5](rate)
-    - [6](rate)
-    - [7](rate)
-    - [8](rate)
-    - [9](rate)
-    - [10](rate)
+# - intent: rate_movie
+#   examples: |
+#     - [1](rate)
+#     - [2](rate)
+#     - [3](rate)
+#     - [4](rate)
+#     - [5](rate)
+#     - [6](rate)
+#     - [7](rate)
+#     - [8](rate)
+#     - [9](rate)
+#     - [10](rate)
