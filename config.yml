@@ -48,3 +48,23 @@ policies:
    - name: UnexpecTEDIntentPolicy
      epochs: 50
      tolerance: 0.1
+   #- name: FormPolicy     # Manage and validate form-based conversations
+     #max_history: 5
+   #  validation_set_ratio: 0.1  # Portion of data used for validation during training
+   #  augmentation_factor: 20  # Augmentation factor for data augmentation
+   #  core_fallback_threshold: 0.2  # Threshold for the core fallback action
+   #- name: MappingPolicy  # Map user inputs to intents or actions using predefined rules
+   #  denied_classification_penalty: -0.5  # Penalty for denied classification
+   #  influence_conversation: false  # Whether to influence the conversation
+   #- name: ResponseSelector  # Select personalized responses based on user queries
+   #  retrieval_intent: "retrieve_response"  # The intent used for response retrieval
+   #  deny_suggestion_intent: "deny"  # The intent to deny response suggestions
+   #  model_confidence: "low"  # Confidence level for selecting a response
+   #  project_path: "./projects"  # Path to the response selection model project directory
+   #  stop_words: "data/stopwords.txt"  # Path to stop words list for response selection
+   #- name: ReinforcementLearningPolicy  # Fine-tune responses based on user feedback
+     #max_history: 5
+   #  epochs: 50  
+   #  model_confidence: "low"  # Confidence level for model predictions
+   #  random_seed: 42  # Set a random seed for reproducibility
+

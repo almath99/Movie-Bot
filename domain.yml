@@ -1,0 +1,340 @@
+version: '3.1'
+
+intents:
+- affirm
+- request_identify
+#- request_update_profile
+#- update_name
+#- update_last_name
+#- update_age
+#- update_email
+#- update_favourite_genre
+- ask_movie_recommendation
+- deny
+- goodbye
+- greet
+- movie_genre
+- request_rate_movie
+- movie_rate
+- rate_movie
+- request_sign_up
+- thank
+
+forms:
+  sign_up_form:
+    required_slots:
+    - name
+    - last_name
+    - email
+    - age
+    - favourite_genre
+  
+  identify_user_form:
+    required_slots:
+    - id_name
+    - id_last_name  
+
+entities:
+- movie_genre
+- movie_rate
+- rate
+
+slots:
+  
+  request:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+
+  response:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+
+  generated_text:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+
+  user_profile_id:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+
+  name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: sign_up_form
+        requested_slot: name
+
+  last_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: sign_up_form
+        requested_slot: last_name
+
+  id_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: identify_user_form
+        requested_slot: id_name
+
+  id_last_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: identify_user_form
+        requested_slot: id_last_name
+
+  email:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: sign_up_form
+        requested_slot: email
+
+  age:
+    type: float
+    min_value: 0
+    max_value: 100
+    influence_conversation: true
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: sign_up_form
+        requested_slot: age 
+  
+  favourite_genre:
+    type: text
+    influence_conversation: true 
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: sign_up_form
+        requested_slot: favourite_genre 
+
+  # new_name:
+  #   type: text
+  #   influence_conversation: true
+  #   mappings:
+  #   - type: from_text
+  #     conditions:
+  #     - active_loop: update_name_form
+  #       requested_slot: new_name
+        
+  # new_last_name:
+  #   type: text
+  #   influence_conversation: true
+  #   mappings:
+  #   - type: from_text
+  #     conditions:
+  #     - active_loop: update_last_name_form
+  #       requested_slot: new_last_name
+
+  # new_age:
+  #   type: text
+  #   influence_conversation: true
+  #   mappings:
+  #   - type: from_text
+  #     conditions:
+  #     - active_loop: update_age_form
+  #       requested_slot: new_age
+
+  # new_email:
+  #   type: text
+  #   influence_conversation: true
+  #   mappings:
+  #   - type: from_text
+  #     conditions:
+  #     - active_loop: update_email_form
+  #       requested_slot: new_email
+    
+  # new_favourite_genre:
+  #   type: text
+  #   influence_conversation: true
+  #   mappings:
+  #   - type: from_text
+  #     conditions:
+  #     - active_loop: update_genre_form
+  #       requested_slot: new_favourite_genre
+  
+  movie_genre:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: movie_genre
+      actions: utter_movie_genre
+
+  # asked_for_genre:
+  #   type: bool
+  #   initial_value: false
+  #   mappings: 
+  #   - type: from_trigger_intent
+  #     intent: movie_genre
+
+  movie_rate:
+    type: text
+    influence_conversation: false 
+    mappings:
+    - type: from_entity
+      entity: movie_rate
+      actions: utter_movie_rate
+
+  rate:
+   type: float
+   min_value: 0
+   max_value: 10
+   influence_conversation: false
+   mappings:
+   - type: from_entity
+     entity: rate
+     actions: utter_rate
+
+
+
+responses:
+  utter_greet:
+  - text: Hey! How can I help you?
+  utter_goodbye:
+  - text: Have fun! Bye!
+  utter_continue:
+  - text: Do you have any other question?
+  utter_signup:
+  - text: You chose to sign up.
+  utter_check_profile:
+  - text: Let me first search if you already have an account created. 
+  utter_identification:
+  - text: Let me search if you already have an account created. 
+  utter_identified_user:
+  - text: Hi {id_name} {id_last_name}! I identified you, we can now continue!
+  utter_update_profile:
+  - text: Okay, so you want to update your profile. 
+  utter_ask_field_to_update:
+  - text: What change you want to make to your profile? You can change your name, last name, age, email or favourite movie genre.
+  utter_ask_new_name:
+  - text: Can you tell me your new name?
+  utter_ask_new_last_name:
+  - text: Can you tell me your new last name?
+  utter_ask_new_age:
+  - text: Can you tell me your new age?
+  utter_ask_new_email:
+  - text: Can you tell me your new email?
+  utter_ask_new_favourite_genre:
+  - text: Can you tell me your new favourite movie genre?
+#  utter_confirm_update_name:
+#  - text: Your name is updated! Your new name is now {name}!
+#  utter_confirm_update_last_name:
+#  - text: Your last name is updated! Your new last name is now {last_name}!
+#  utter_confirm_update_age:
+#  - text: Your age is updated! Your new age is now {age}!
+  # utter_confirm_update_email:
+  # - text: Your email is updated! Your new email is now {email}!
+  # utter_confirm_update_favourite_genre:
+  # - text: Your favourite genre is updated! Your new favourite movie genre is now {favourite_genre}!
+  utter_rate_form:
+  - text: You chose to rate a movie. 
+  utter_movie_rate:
+  - text: Which movie you want to rate?
+  utter_movie_recommendation_path:
+  - text: You chose the movie recommendation path.
+  utter_second_recommendation:
+  - text: I will make another recommendation then.
+  - text: I'm sorry, I'll try an make another recommendation.
+  utter_movie_genre:
+  - text: What movie genre do you like?
+  utter_check_genre:
+  - text: Do you want a movie recommendation on your favourite movie genre?
+  utter_rate_value:
+  - text: How much do you rate this {movie} from 0-10?
+  utter_rate_recognition:
+  - text: So you rated the {movie} with {rate}, right?
+  utter_ask_name:
+  - text: Could you please provide your name?
+  utter_ask_last_name:
+  - text: Could you please provide your last name?
+  utter_ask_id_name:
+  - text: Can you please tell me your name?
+  utter_ask_id_last_name:
+  - text: Can you please tell me your last name?
+  utter_ask_email:
+  - text: So {name}, could you please also tell me your email?
+  utter_ask_age:
+  - text: Now, can you tell me your age?
+  utter_ask_favourite_genre:
+  - text: And finally, {name}, what is your favourite movie genre?
+  utter_aknowledge_info:
+  - text: Thanks {name}!
+  utter_check:
+  - text: Do you like this recommendation?
+
+actions:
+- '...'
+- action_generate_text
+- action_personalized_recommendation
+- action_personalized_recommendation_genre
+- user_identification
+- action_confirm_movie_genre
+- action_make_movie_recommendation
+- action_create_user_profile
+- action_access_user_profile
+- utter_identification
+- utter_identified_user
+- utter_check_profile
+- utter_update_profile
+- utter_ask_new_name
+- utter_ask_new_last_name
+- utter_ask_new_age
+- utter_ask_new_email
+- utter_ask_new_favourite_genre
+# - action_update_user_profile
+# - action_set_new_user_profile_info
+# - utter_confirm_update_name
+# - utter_confirm_update_last_name
+# - utter_confirm_update_age
+# - utter_confirm_update_email
+# - utter_confirm_update_favourite_genre
+# - movie_recommendation_form
+- utter_aknowledge_info
+- utter_ask_email
+- utter_ask_name
+ - utter_ask_id_name
+ - utter_ask_id_last_name
+- utter_ask_last_name
+- utter_ask_age
+- utter_ask_favourite_genre
+- utter_check
+- utter_continue
+- utter_goodbye
+- utter_greet
+- utter_movie_genre
+- utter_rate_value
+- utter_rate_recognition
+- utter_rate_form
+- utter_movie_rate
+- utter_movie_recommendation
+- utter_second_recommendation
+- utter_movie_recommendation_path
+- utter_signup
+- action_restart
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
