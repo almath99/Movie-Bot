@@ -132,6 +132,9 @@ db = client["MovieBot"]
 collection = db["user_profiles"]
 
 class ActionCreateUserProfile(Action):
+    """ It connects with MongoDB database, 
+    creates User profiles and stores them on the database"""
+    
     def name(self):
         return "action_create_user_profile"
 
@@ -168,89 +171,6 @@ class ActionCreateUserProfile(Action):
 
 
 
-# from rasa_sdk.executor import CollectingDispatcher
-
-# class ActionUpdateUserProfile(Action):
-#     """Updates a value of the user profile. 
-#     For example the User wants to change his or her age."""
-
-#     def name(self):
-#         return "action_update_user_profile"
-
-#     def run(self, dispatcher, tracker, domain):
-#         user_id = tracker.sender_id
-
-#         # Get the field and new value from the user's message
-#         field_to_update = tracker.latest_message.get("entities")[0]["entity"]  # Assuming the entity name matches the field name
-#         new_value = tracker.latest_message.get("text")
-
-#         # Update the user's profile in the MongoDB collection
-#         collection.update_one(
-#             {"user_id": user_id},
-#             {"$set": {field_to_update: new_value}}
-#         )
-
-#         dispatcher.utter_message(f"Your {field_to_update} has been updated to {new_value}.")
-#         return []
-
-
-#class ActionSetNewUserProfileInfo(Action):
-#    def name(self) -> Text:
-#        return "action_set_new_user_profile_info"
-
-#    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#        updating_field = tracker.get_slot("updating_field")
-#        new_value = tracker.latest_message['text'].strip()
-        
-#        if updating_field == "name":
-            # Update the name in the user's profile
-#            collection.update_one(
-#                {"user_id": tracker.sender_id},
-#                {"$set": {"name": new_value}}
-#            )
-#            dispatcher.utter_message(f"Great, your name is now '{new_value}'.")
-#        elif updating_field == "age":
-#            try:
-#                new_age = int(new_value)
-#                if 0 <= new_age <= 100:
-                    # Update the age in the user's profile
-#                    collection.update_one(
-#                        {"user_id": tracker.sender_id},
-#                        {"$set": {"age": new_age}}
-#                    )
-#                    dispatcher.utter_message(f"Your age has been updated to {new_age}.")
-#                else:
-#                    dispatcher.utter_message("Please provide a valid age between 0 and 100.")
-#            except ValueError:
-#                dispatcher.utter_message("Please provide a valid age as a number.")
-#        elif updating_field == "last_name":
-            # Update the last name in the user's profile
-#            collection.update_one(
-#                {"user_id": tracker.sender_id},
-#                {"$set": {"last_name": new_value}}
-#            )
-#            dispatcher.utter_message(f"Great, your last_name is now '{new_value}'.")
-#        elif updating_field == "email":
-            # Update the email in the user's profile
-#            collection.update_one(
-#                {"user_id": tracker.sender_id},
-#                {"$set": {"email": new_value}}
-#            )
-#            dispatcher.utter_message(f"Great, your email is now '{new_value}'.")
-#        elif updating_field == "favourite_genre":
-            # Update the favourite genre in the user's profile
-#            collection.update_one(
-#                {"user_id": tracker.sender_id},
-#                {"$set": {"favourite_genre": new_value}}
-#            )
-#            dispatcher.utter_message(f"Great, your favourite movie genre is now '{new_value}'.")
-#        else:
-#            dispatcher.utter_message("I'm not sure what field you're trying to update.")
-        
-        # Reset the updating_field slot
-#        return [SlotSet("updating_field", None)]
-
-
 class ActionAccessUserProfile(Action):
     def name(self):
         return "action_access_user_profile"
@@ -280,6 +200,8 @@ from rasa_sdk import Action
 from rasa_sdk.events import SlotSet
 
 class ActionGenerateText(Action):
+    """ it connects with the GPT 3.5 Turbo API and uses it for language generation. """
+
     def name(self):
         return "action_generate_text"
 
@@ -308,6 +230,11 @@ class ActionGenerateText(Action):
     
 
 class UserIdentificationForm(Action):
+        """ It collects the name and last name of the user,
+        connects with the MongoDB database and searches for the profile there.
+        If the name data exist, the the suer is identified."""
+
+    
     def name(self):
         return "user_identification"
 
@@ -434,6 +361,88 @@ class ActionGenerateText(Action):
             return []
 
 
+
+# from rasa_sdk.executor import CollectingDispatcher
+
+# class ActionUpdateUserProfile(Action):
+#     """Updates a value of the user profile. 
+#     For example the User wants to change his or her age."""
+
+#     def name(self):
+#         return "action_update_user_profile"
+
+#     def run(self, dispatcher, tracker, domain):
+#         user_id = tracker.sender_id
+
+#         # Get the field and new value from the user's message
+#         field_to_update = tracker.latest_message.get("entities")[0]["entity"]  # Assuming the entity name matches the field name
+#         new_value = tracker.latest_message.get("text")
+
+#         # Update the user's profile in the MongoDB collection
+#         collection.update_one(
+#             {"user_id": user_id},
+#             {"$set": {field_to_update: new_value}}
+#         )
+
+#         dispatcher.utter_message(f"Your {field_to_update} has been updated to {new_value}.")
+#         return []
+
+
+#class ActionSetNewUserProfileInfo(Action):
+#    def name(self) -> Text:
+#        return "action_set_new_user_profile_info"
+
+#    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#        updating_field = tracker.get_slot("updating_field")
+#        new_value = tracker.latest_message['text'].strip()
+        
+#        if updating_field == "name":
+            # Update the name in the user's profile
+#            collection.update_one(
+#                {"user_id": tracker.sender_id},
+#                {"$set": {"name": new_value}}
+#            )
+#            dispatcher.utter_message(f"Great, your name is now '{new_value}'.")
+#        elif updating_field == "age":
+#            try:
+#                new_age = int(new_value)
+#                if 0 <= new_age <= 100:
+                    # Update the age in the user's profile
+#                    collection.update_one(
+#                        {"user_id": tracker.sender_id},
+#                        {"$set": {"age": new_age}}
+#                    )
+#                    dispatcher.utter_message(f"Your age has been updated to {new_age}.")
+#                else:
+#                    dispatcher.utter_message("Please provide a valid age between 0 and 100.")
+#            except ValueError:
+#                dispatcher.utter_message("Please provide a valid age as a number.")
+#        elif updating_field == "last_name":
+            # Update the last name in the user's profile
+#            collection.update_one(
+#                {"user_id": tracker.sender_id},
+#                {"$set": {"last_name": new_value}}
+#            )
+#            dispatcher.utter_message(f"Great, your last_name is now '{new_value}'.")
+#        elif updating_field == "email":
+            # Update the email in the user's profile
+#            collection.update_one(
+#                {"user_id": tracker.sender_id},
+#                {"$set": {"email": new_value}}
+#            )
+#            dispatcher.utter_message(f"Great, your email is now '{new_value}'.")
+#        elif updating_field == "favourite_genre":
+            # Update the favourite genre in the user's profile
+#            collection.update_one(
+#                {"user_id": tracker.sender_id},
+#                {"$set": {"favourite_genre": new_value}}
+#            )
+#            dispatcher.utter_message(f"Great, your favourite movie genre is now '{new_value}'.")
+#        else:
+#            dispatcher.utter_message("I'm not sure what field you're trying to update.")
+        
+        # Reset the updating_field slot
+#        return [SlotSet("updating_field", None)]
 
 
 
