@@ -275,6 +275,16 @@ from rasa_sdk import Action
 from rasa_sdk.events import SlotSet
 
 class PersonalizedRecommendationAction(Action):
+    """ It keeps the access to the user profile form the above "user_identification" action 
+    and all the information for the user's profile. For the personalized movie recommendation
+    GPT 3.5 Turbo is used. 
+    If the user is under 10 years old, then the action promts GPT to recommenda only kid movies.
+    If the user is under 18 years old, then the action prompts GPT to reommend teen appropriate movies.
+    If the user is an adult then GPT can recommend any movie.
+    The genre chosen for this recommendation is the favourite_genre of the user, as it is noted in 
+    the MongoDB database."""
+
+    
     def name(self):
         return "action_personalized_recommendation"
 
@@ -320,6 +330,10 @@ from rasa_sdk import Action
 from rasa_sdk.events import SlotSet
 
 class ActionGenerateText(Action):
+    """ Same as "action_personalized_recommendation", but it the recommendation isn't based 
+    on the user's favourite_genre, but the movie_genre that he chooses."""
+
+    
     def name(self):
         return "action_personalized_recommendation_genre"
 
