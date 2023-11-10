@@ -207,7 +207,7 @@ class ActionGenerateText(Action):
 
     def run(self, dispatcher, tracker, domain):
         # Replace 'YOUR_API_KEY' with your GPT-3.5 Turbo API key
-        api_key = "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"
+        api_key = "API KEY"
 
         # Retrieve user input
         request = tracker.latest_message['text']
@@ -303,7 +303,7 @@ class PersonalizedRecommendationAction(Action):
                 prompt = f"Recommend movies for an adult ({user_age} years old) who loves {user_favourite_genre} movies."
 
             # Replace 'YOUR_API_KEY' with your GPT-3.5 Turbo API key
-            api_key = "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"
+            api_key = "API KEY"
 
             # Make a request to GPT-3.5 Turbo for movie recommendations
             response = openai.Completion.create(
@@ -339,7 +339,7 @@ class ActionGenerateText(Action):
 
     def run(self, dispatcher, tracker, domain):
         # Replace 'YOUR_API_KEY' with your GPT-3.5 Turbo API key
-        api_key = "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"
+        api_key = "API KEY"
 
         # Retrieve user input and slots
         request = tracker.latest_message['text']
