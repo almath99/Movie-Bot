@@ -76,19 +76,22 @@ class ActionMakeMovieRecommendation(Action):
         return []
 
 
+
+from typing import Any, Dict, List, Text
+from rasa_sdk import Action, Tracker
+from rasa_sdk.events import Restarted
+from rasa_sdk.executor import CollectingDispatcher
+
 class ActionRestart(Action):
-  '''Triggers default action_restart action.'''
-  
-  def name(self) -> Text:
-      return "action_restart"
+    '''Triggers default action_restart action.'''
+    def name(self) -> Text:
+        return "action_restart"
 
-  async def run(
-      self, dispatcher, tracker: Tracker, domain: Dict[Text, Any]
-  ) -> List[Dict[Text, Any]]:
+    async def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]
+    ) -> List[Dict[Text, Any]]:
+        return [Restarted()]
 
-      # custom behavior
-
-      return [...]
 
 
 class ActionUnlikelyIntent(Action):
