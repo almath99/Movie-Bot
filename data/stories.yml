@@ -74,12 +74,68 @@ stories:
   - action: action_restart
 
 
-- story: personalized_recommendation   # the user wants a recommendation on his favourite movie genre
+- story: generate_movie_recommendation    
   steps:
   - intent: greet
   - action: utter_greet
   - intent: ask_movie_recommendation
   - action: utter_movie_recommendation_path
+  - action: utter_personalization
+  - intent: no_personalized_recommendation
+  - action: utter_movie_genre
+  - intent: movie_genre
+    entities:
+    - movie_genre  
+  - slot_was_set:
+    - requested_slot: movie_genre
+  - action: action_confirm_movie_genre
+  - action: action_generate_text
+  - action: utter_check
+  - or:
+    - intent: affirm
+    - intent: thank
+  - action: utter_goodbye
+  - intent: goodbye
+  - action: action_restart
+
+
+- story: deny_generate_movie_recommendation    
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_movie_recommendation
+  - action: utter_movie_recommendation_path
+  - action: utter_personalization
+  - intent: no_personalized_recommendation
+  - action: utter_movie_genre
+  - intent: movie_genre
+    entities:
+    - movie_genre  
+  - slot_was_set:
+    - requested_slot: movie_genre
+  - action: action_confirm_movie_genre
+  - action: action_generate_text
+  - action: utter_check
+  - intent: deny
+  - action: utter_second_recommendation
+  - action: action_generate_text
+  - action: utter_check
+  - or:
+    - intent: affirm
+    - intent: thank
+  - action: utter_goodbye
+  - intent: goodbye
+  - action: action_restart
+
+
+- story: personalized_recommendation  
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_movie_recommendation
+  - action: utter_movie_recommendation_path
+  - action: utter_personalization
+  - intent: personalized_recommendation
   - action: utter_check_profile
   - action: identify_user_form
   - active_loop: identify_user_form
@@ -102,12 +158,48 @@ stories:
   - action: action_restart
 
 
-- story: personalized_different_genre  # the user wants a recommendation on a different genre
+- story: deny_personalized_recommendation   
   steps:
   - intent: greet
   - action: utter_greet
   - intent: ask_movie_recommendation
   - action: utter_movie_recommendation_path
+  - action: utter_personalization
+  - intent: personalized_recommendation
+  - action: utter_check_profile
+  - action: identify_user_form
+  - active_loop: identify_user_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - requested_slot: last_name
+  - active_loop: null
+  - action: user_identification
+  - action: utter_identified_user
+  - action: utter_check_genre
+  - intent: affirm
+  - action: action_personalized_recommendation
+  - action: utter_check
+  - intent: deny
+  - action: utter_second_recommendation
+  - action: action_personalized_recommendation
+  - action: utter_check
+  - or:
+    - intent: affirm
+    - intent: thank
+  - action: utter_goodbye
+  - intent: goodbye
+  - action: action_restart
+
+
+- story: personalized_different_genre  
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_movie_recommendation
+  - action: utter_movie_recommendation_path
+  - action: utter_personalization
+  - intent: personalized_recommendation
   - action: utter_check_profile
   - action: identify_user_form
   - active_loop: identify_user_form
@@ -135,126 +227,44 @@ stories:
   - action: utter_goodbye
   - intent: goodbye
   - action: action_restart
+  
 
-
-# - story: generate_movie_recommendation    # a story for general movie recommendation
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - intent: ask_movie_recommendation
-#   - action: utter_movie_recommendation_path
-#   - action: utter_movie_genre
-#   - intent: movie_genre
-#     entities:
-#     - movie_genre  # Replace with the desired movie genre
-#   - slot_was_set:
-#     - requested_slot: movie_genre
-#   - action: action_confirm_movie_genre
-#   - action: action_generate_text
-#   #- action: utter_movie_recommendation
-#   - intent: thank
-#   - action: utter_goodbye
-#   - intent: goodbye
-#   - action: action_restart
-
-
-# - story: update_name
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - intent: request_update_profile
-#   - action: utter_update_profile
-#   - action: utter_check_profile
-#   - action: identify_user_form
-#   - active_loop: identify_user_form
-#   - slot_was_set:
-#     - requested_slot: name
-#   - slot_was_set:
-#     - requested_slot: last_name
-#   - active_loop: null
-#   - action: user_identification
-#   - action: utter_identified_user
-#   - action: utter_ask_field_to_update  # Ask which field to update
-#   - intent: update_name  # User wants to update their name
-#   - action: utter_ask_new_name  # Ask the user for their new name
-#   - action: action_update_user_profile  # Trigger the action to update the user's profile
-#   - slot_was_set:
-#     - requested_slot: name  #i may need to change this too
-#   - action: utter_confirm_update_name  # Confirm the name update
-#   - action: utter_continue  # Ask if the user wants to update anything else
-#   - intent: deny  # User doesn't want to update anything else
-#   - action: utter_goodbye  # Say goodbye
-#   - intent: goodbye
-#   - action: action_restart  # Restart the conversation
-
-
-#- story: actual_movie_recommendation      # movie recommendation without gpt
-#  steps:
-#  - intent: greet
-#  - action: utter_greet
-#  - intent: ask_movie_recommendation
-#  - action: utter_movie_recommendation_path
-#  - action: utter_movie_genre
-#  - intent: movie_genre
-#    entities:
-#    - movie_genre
-#  - slot_was_set:
-#    - requested_slot: movie_genre
-#  - action: action_confirm_movie_genre
-#  - action: action_make_movie_recommendation
-#  - action: utter_check
-#  - or:
-#    - intent: affirm
-#    - intent: thank
-#  - action: utter_goodbye
-#  - intent: goodbye
-#  - action: action_restart
-
-
-#- story: deny_movie_recommendation
-#  steps:
-#  - intent: greet
-#  - action: utter_greet
-#  - intent: ask_movie_recommendation
-#  - action: utter_movie_recommendation_path
-#  - action: utter_movie_genre
-#  - intent: movie_genre
-#    entities:
-#    - movie_genre
-#  - slot_was_set:
-#    - requested_slot: movie_genre
-#  - action: action_confirm_movie_genre
-#  - action: action_make_movie_recommendation
-#  - action: utter_check
-#  - intent: deny
-#  - action: utter_second_recommendation
-#  - action: action_make_movie_recommendation
-#  - action: utter_check
-#  - or:
-#    - intent: affirm
-#    - intent: thank
-#  - action: utter_continue
-#  - intent: deny
-#  - action: utter_goodbye
-#  - intent: goodbye
-#  - action: action_restart
-
-
-#- story: rate_a_movie
-#  steps:
-#  - intent: greet
-#  - action: utter_greet
-#  - intent: request_rate_movie
-#  - action: utter_rate_form
-#  - action: utter_movie_rate
-#  - intent: movie_rate
-#    entities:
-#      - movie_rate
-#  - action: utter_rate_value
-#  - intent: rate_movie
-#    entities:
-#    - rate
-#  - action: utter_rate_recognition
-#  - intent: affirm
-#  - action: utter_goodbye
-#  - action: action_restart
+- story: deny_personalized_different_genre  
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_movie_recommendation
+  - action: utter_movie_recommendation_path
+  - action: utter_personalization
+  - intent: personalized_recommendation
+  - action: utter_check_profile
+  - action: identify_user_form
+  - active_loop: identify_user_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - requested_slot: last_name
+  - active_loop: null
+  - action: user_identification
+  - action: utter_identified_user
+  - action: utter_check_genre
+  - intent: deny
+  - action: utter_movie_genre
+  - intent: movie_genre
+    entities:
+    - movie_genre  
+  - slot_was_set:
+    - requested_slot: movie_genre
+  - action: action_confirm_movie_genre
+  - action: action_personalized_recommendation_genre
+  - action: utter_check
+  - intent: deny
+  - action: utter_second_recommendation
+  - action: action_personalized_recommendation_genre
+  - action: utter_check
+  - or:
+    - intent: affirm
+    - intent: thank
+  - action: utter_goodbye
+  - intent: goodbye
+  - action: action_restart
