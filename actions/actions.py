@@ -7,6 +7,7 @@
 
 # This is a simple example for a custom action which utters "Hello World!"
 
+
 from typing import Any, Text, Dict, List
 from rasa_sdk.events import SlotSet
 from rasa_sdk import Action, Tracker
@@ -203,23 +204,30 @@ from rasa_sdk import Action
 from rasa_sdk.events import SlotSet
 
 class ActionGenerateText(Action):
-    """ it connects with the GPT 3.5 Turbo API and uses it for language generation. """
+    """ it connects with the GPT 3.5 Turbo API and 
+    uses it for language generation and movie. """
 
     def name(self):
         return "action_generate_text"
-
     def run(self, dispatcher, tracker, domain):
         # Replace 'YOUR_API_KEY' with your GPT-3.5 Turbo API key
-        api_key = "API KEY"
+        api_key = "API-KEY"
 
-        # Retrieve user input
-        request = tracker.latest_message['text']
+        # Retrieve user's preferred movie genre from slot
+        user_genre = tracker.get_slot("movie_genre")
+
+        if not user_genre:
+            dispatcher.utter_message("I'm sorry, I couldn't identify your preferred movie genre.")
+            return []
+
+        # Construct a prompt asking for movie recommendations in the specified genre
+        prompt = f"Can you recommend some {user_genre.lower()} movies? I'm looking for compelling {user_genre.lower()} films with great storytelling."
 
         # Make a request to GPT-3.5 Turbo for text generation
         response = openai.Completion.create(
-            engine="text-davinci-003",  # Use the GPT-3.5 Turbo engine
-            prompt=request,
-            max_tokens=50,  # Adjust this based on your desired response length
+            engine="text-davinci-003",
+            prompt=prompt,
+            max_tokens=100,  
             api_key=api_key
         )
 
@@ -233,7 +241,7 @@ class ActionGenerateText(Action):
     
 
 class UserIdentificationForm(Action):
-        """ It collects the name and last name of the user,
+    """ It collects the name and last name of the user,
         connects with the MongoDB database and searches for the profile there.
         If the name data exist, the the suer is identified."""
 
@@ -306,13 +314,13 @@ class PersonalizedRecommendationAction(Action):
                 prompt = f"Recommend movies for an adult ({user_age} years old) who loves {user_favourite_genre} movies."
 
             # Replace 'YOUR_API_KEY' with your GPT-3.5 Turbo API key
-            api_key = "API KEY"
+            api_key = "API-KEY"
 
             # Make a request to GPT-3.5 Turbo for movie recommendations
             response = openai.Completion.create(
                 engine="text-davinci-003",  # Use the GPT-3.5 Turbo engine
                 prompt=prompt,
-                max_tokens=50,  # Adjust this based on your desired response length
+                max_tokens=100,  # Adjust this based on your desired response length
                 api_key=api_key
             )
 
@@ -342,7 +350,7 @@ class ActionGenerateText(Action):
 
     def run(self, dispatcher, tracker, domain):
         # Replace 'YOUR_API_KEY' with your GPT-3.5 Turbo API key
-        api_key = "API KEY"
+        api_key = "API-KEY"
 
         # Retrieve user input and slots
         request = tracker.latest_message['text']
@@ -362,7 +370,7 @@ class ActionGenerateText(Action):
             response = openai.Completion.create(
                 engine="text-davinci-003",  # Use the GPT-3.5 Turbo engine
                 prompt=prompt,
-                max_tokens=50,  # Adjust this based on your desired response length
+                max_tokens=100,  # Adjust this based on your desired response length
                 api_key=api_key
             )
 
