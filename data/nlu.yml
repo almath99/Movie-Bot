@@ -324,6 +324,8 @@ nlu:
     - yes account
     - I already have an account
     - I'm a registered user.
+    - No, I have an account
+    - No, I already have an account
     - I've created a profile.
     - I want personalized suggestions.
     - I'm signed up already.
@@ -368,36 +370,6 @@ nlu:
     - I've previously personalized my experience.
     - I've already set up my account details.
     - I've set up my profile and preferences.
-
-
-
-# - intent: request_update_profile
-#   examples: |
-#     - I want to change my profile
-#     - I want to make a change to my profile
-#     - Can I change my info?
-#     - Can I change my profile info?
-#     - Change my profile
-#     - Change my info
-#     - I want to change my name
-#     - I want to change my email
-#     - I want to change my last name
-#     - I want to change my favourite movie genre
-#     - I want to change my age
-#     - change my name
-#     - change my email
-#     - change my last name
-#     - change my favourite movie genre
-#     - change my age
-#     - update profile
-#     - change profile
-#     - change info
-#     - update info
-#     - Can I change my name?
-#     - Can I change my email?
-#     - Can I chenge my last name?
-#     - Can I change my age?
-#     - Can I change my favourite movie genre?
 
 
 - intent: ask_movie_recommendation
