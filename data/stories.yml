@@ -38,16 +38,14 @@ stories:
   - slot_was_set:
     - requested_slot: last_name
   - slot_was_set:
-    - requested_slot: email
-  - slot_was_set:
     - requested_slot: age
+  - slot_was_set:
+    - requested_slot: hobby
   - slot_was_set:
     - requested_slot: favourite_genre
   - active_loop: null
-  - action: action_create_user_profile  # Trigger the action to update the user's profile
+  - action: action_create_user_profile  
   - action: utter_aknowledge_info
-  - action: utter_continue
-  - intent: deny
   - action: utter_goodbye
   - intent: goodbye
   - action: action_restart
@@ -99,7 +97,7 @@ stories:
   - action: action_restart
 
 
-- story: deny_generate_movie_recommendation    
+- story: deny_generate_movie_recommendation
   steps:
   - intent: greet
   - action: utter_greet
@@ -158,7 +156,7 @@ stories:
   - action: action_restart
 
 
-- story: deny_personalized_recommendation   
+- story: deny_personalized_recommendation
   steps:
   - intent: greet
   - action: utter_greet
@@ -268,3 +266,57 @@ stories:
   - action: utter_goodbye
   - intent: goodbye
   - action: action_restart
+
+
+
+
+#- story: actual_movie_recommendation
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: ask_movie_recommendation
+#  - action: utter_movie_recommendation_path
+#  - action: utter_movie_genre
+#  - intent: movie_genre
+#    entities:
+#    - movie_genre
+#  - slot_was_set:
+#    - requested_slot: movie_genre
+#  - action: action_confirm_movie_genre
+#  - action: action_make_movie_recommendation
+#  - action: utter_check
+#  - or:
+#    - intent: affirm
+#    - intent: thank
+#  - action: utter_goodbye
+#  - intent: goodbye
+#  - action: action_restart
+
+
+#- story: deny_movie_recommendation
+#  steps:
+#  - intent: greet
+#  - action: utter_greet
+#  - intent: ask_movie_recommendation
+#  - action: utter_movie_recommendation_path
+#  - action: utter_movie_genre
+#  - intent: movie_genre
+#    entities:
+#    - movie_genre
+#  - slot_was_set:
+#    - requested_slot: movie_genre
+#  - action: action_confirm_movie_genre
+#  - action: action_make_movie_recommendation
+#  - action: utter_check
+#  - intent: deny
+#  - action: utter_second_recommendation
+#  - action: action_make_movie_recommendation
+#  - action: utter_check
+#  - or:
+#    - intent: affirm
+#    - intent: thank
+#  - action: utter_continue
+#  - intent: deny
+#  - action: utter_goodbye
+#  - intent: goodbye
+#  - action: action_restart
