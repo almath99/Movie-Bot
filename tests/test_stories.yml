@@ -1,0 +1,305 @@
+stories:
+- story: create_user_profile test
+  steps: 
+  - user: |
+      hey
+    intent: greet
+  - action: utter_greet
+  - user: |
+      I want to create an account
+    intent: request_sign_up
+  - action: utter_signup
+  - action: sign_up_form
+  - active_loop: sign_up_form
+  - slot_was_set:
+    - requested_slot: "george"
+  - slot_was_set:
+    - requested_slot: "pavlou"
+  - slot_was_set:
+    - requested_slot: "14"
+  - slot_was_set:
+    - requested_slot: "super heroes"
+  - slot_was_set:
+    - requested_slot: "comedies"
+  - active_loop: null
+  - action: action_create_user_profile  
+  - action: utter_aknowledge_info
+  - action: utter_continue
+  - user: |
+      bye
+    intent: goodbye
+  - action: action_restart
+
+
+- story: identify_user test
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - user: |
+      do I have an account?
+    intent: request_identify
+  - action: utter_identification
+  - action: identify_user_form
+  - active_loop: identify_user_form
+  - slot_was_set:
+    - requested_slot: "Jennie"
+  - slot_was_set:
+    - requested_slot: "Kim"
+  - active_loop: null
+  - action: user_identification
+  - action: utter_identified_user
+  - action: utter_continue
+  - user: |
+      bye
+    intent: goodbye
+  - action: action_restart
+
+
+- story: generate_movie_recommendation test    
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - user: |
+      Can you recommend me a movie?
+    intent: ask_movie_recommendation
+  - action: utter_movie_recommendation_path
+  - action: utter_personalization
+  - user: |
+      as a guest
+    intent: no_personalized_recommendation
+  - action: utter_movie_genre
+  - user: |
+      [horror](movie_genre)
+    intent: movie_genre
+  - slot_was_set:
+    - requested_slot: "horror"
+  - action: action_confirm_movie_genre
+  - action: action_generate_text
+  - action: utter_check
+  - user: |
+      yes
+    intent: affirm
+  - action: utter_goodbye
+  - user: |
+      bye
+    intent: goodbye
+  - action: action_restart
+
+
+- story: deny_generate_movie_recommendation test
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - user: |
+      Can you recommend me a movie?
+  - action: utter_movie_recommendation_path
+  - action: utter_personalization
+  - user: |
+      as a guest
+    intent: no_personalized_recommendation
+  - action: utter_movie_genre
+  - user: |
+      [horror](movie_genre)
+    intent: movie_genre
+  - slot_was_set:
+    - requested_slot: "horror"
+  - action: action_confirm_movie_genre
+  - action: action_generate_text
+  - action: utter_check
+  - user: |
+      no
+    intent: deny
+  - action: utter_second_recommendation
+  - action: action_generate_text
+  - action: utter_check
+  - user: |
+      yes
+    intent: affirm
+  - action: utter_goodbye
+  - user: |
+      bye
+  - action: action_restart
+
+
+- story: personalized_recommendation test  
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - user: |
+      Can you recommend me a movie?
+  - action: utter_movie_recommendation_path
+  - action: utter_personalization
+  - user: |
+      I have an account
+    intent: personalized_recommendation
+  - action: utter_check_profile
+  - action: identify_user_form
+  - active_loop: identify_user_form
+  - slot_was_set:
+    - requested_slot: "Jennie"
+  - slot_was_set:
+    - requested_slot: "Kim"
+  - active_loop: null
+  - action: user_identification
+  - action: utter_identified_user
+  - action: utter_check_genre
+  - user: |
+      yes
+    intent: affirm
+  - action: action_personalized_recommendation
+  - action: utter_check
+  - user: |
+      yes
+    intent: affirm
+  - action: utter_goodbye
+  - user: |
+      bye
+  - action: action_restart
+
+
+- story: deny_personalized_recommendation test
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - user: |
+      Can you recommend me a movie?
+  - action: utter_movie_recommendation_path
+  - action: utter_personalization
+  - user: |
+      I have an account
+    intent: personalized_recommendation
+  - action: utter_check_profile
+  - action: identify_user_form
+  - active_loop: identify_user_form
+  - slot_was_set:
+    - requested_slot: "Lisa"
+  - slot_was_set:
+    - requested_slot: "Manoban"
+  - active_loop: null
+  - action: user_identification
+  - action: utter_identified_user
+  - action: utter_check_genre
+  - user: |
+      yes
+    intent: affirm
+  - action: action_personalized_recommendation
+  - action: utter_check
+  - user: |
+      no
+    intent: deny
+  - action: utter_second_recommendation
+  - action: action_personalized_recommendation
+  - action: utter_check
+  - user: |
+      yes
+    intent: affirm
+  - action: utter_goodbye
+  - user: |
+      bye
+  - action: action_restart
+
+
+- story: personalized_different_genre test 
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - user: |
+      Can you recommend me a movie?
+  - action: utter_movie_recommendation_path
+  - action: utter_personalization
+  - user: |
+      I have an account
+    intent: personalized_recommendation
+  - action: utter_check_profile
+  - action: identify_user_form
+  - active_loop: identify_user_form
+  - slot_was_set:
+    - requested_slot: "Jisoo"
+  - slot_was_set:
+    - requested_slot: "Kim"
+  - active_loop: null
+  - action: user_identification
+  - action: utter_identified_user
+  - action: utter_check_genre
+  - user: |
+      no
+    intent: deny
+  - action: utter_movie_genre
+  - user: |
+      [war](movie_genre) movies
+    intent: movie_genre
+  - slot_was_set:
+    - requested_slot: "war"
+  - action: action_confirm_movie_genre
+  - action: action_personalized_recommendation_genre
+  - action: utter_check
+  - user: |
+      yes
+    intent: affirm
+  - action: utter_goodbye
+  - user: |
+      bye
+  - action: action_restart
+  
+
+- story: deny_personalized_different_genre test 
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - user: |
+      Can you recommend me a movie?
+  - action: utter_movie_recommendation_path
+  - action: utter_personalization
+  - user: |
+      I have an account
+    intent: personalized_recommendation
+  - action: utter_check_profile
+  - action: identify_user_form
+  - active_loop: identify_user_form
+  - slot_was_set:
+    - requested_slot: "Alexia"
+  - slot_was_set:
+    - requested_slot: "Mathiopoulou"
+  - active_loop: null
+  - action: user_identification
+  - action: utter_identified_user
+  - action: utter_check_genre
+  - user: |
+      no
+    intent: deny
+  - action: utter_movie_genre
+  - user: |
+      [musical](movie_genre) movies
+    intent: movie_genre
+  - slot_was_set:
+    - requested_slot: "musical"
+  - action: action_confirm_movie_genre
+  - action: action_personalized_recommendation_genre
+  - action: utter_check
+  - user: |
+      no
+    intent: deny
+  - action: utter_second_recommendation
+  - action: action_personalized_recommendation_genre
+  - action: utter_check
+  - user: |
+      yes
+    intent: affirm
+  - action: utter_goodbye
+  - user: |
+      bye
+  - action: action_restart

@@ -1,0 +1,169 @@
+version: "3.1"
+stories:
+- story: deny_generate_movie_recommendation test (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - user: |-
+      Can you recommend me a movie?
+  - action: utter_movie_recommendation_path  # predicted: action_default_fallback
+  - action: utter_personalization
+  - intent: no_personalized_recommendation
+  - action: utter_movie_genre
+  - intent: movie_genre
+    entities:
+    - movie_genre: horror
+  - slot_was_set:
+    - movie_genre: horror
+  - slot_was_set:
+    - requested_slot: horror
+  - action: action_confirm_movie_genre
+  - action: action_generate_text
+  - action: utter_check
+  - intent: deny
+  - action: utter_second_recommendation
+  - action: action_generate_text
+  - action: utter_check
+  - intent: affirm
+  - action: utter_goodbye
+  - user: |-
+      bye
+  - action: action_restart  # predicted: action_default_fallback
+- story: personalized_recommendation test (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - user: |-
+      Can you recommend me a movie?
+  - action: utter_movie_recommendation_path  # predicted: action_default_fallback
+  - action: utter_personalization
+  - intent: personalized_recommendation
+  - action: utter_check_profile
+  - action: identify_user_form
+  - active_loop: identify_user_form
+  - slot_was_set:
+    - requested_slot: Jennie
+  - slot_was_set:
+    - requested_slot: Kim
+  - active_loop: null
+  - action: user_identification
+  - action: utter_identified_user
+  - action: utter_check_genre
+  - intent: affirm
+  - action: action_personalized_recommendation
+  - action: utter_check
+  - intent: affirm
+  - action: utter_goodbye
+  - user: |-
+      bye
+  - action: action_restart  # predicted: action_personalized_recommendation
+- story: deny_personalized_recommendation test (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - user: |-
+      Can you recommend me a movie?
+  - action: utter_movie_recommendation_path  # predicted: action_default_fallback
+  - action: utter_personalization
+  - intent: personalized_recommendation
+  - action: utter_check_profile
+  - action: identify_user_form
+  - active_loop: identify_user_form
+  - slot_was_set:
+    - requested_slot: Lisa
+  - slot_was_set:
+    - requested_slot: Manoban
+  - active_loop: null
+  - action: user_identification
+  - action: utter_identified_user
+  - action: utter_check_genre
+  - intent: affirm
+  - action: action_personalized_recommendation
+  - action: utter_check
+  - intent: deny
+  - action: utter_second_recommendation
+  - action: action_personalized_recommendation
+  - action: utter_check
+  - intent: affirm
+  - action: utter_goodbye
+  - user: |-
+      bye
+  - action: action_restart  # predicted: utter_goodbye
+- story: personalized_different_genre test (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - user: |-
+      Can you recommend me a movie?
+  - action: utter_movie_recommendation_path  # predicted: action_default_fallback
+  - action: utter_personalization
+  - intent: personalized_recommendation
+  - action: utter_check_profile
+  - action: identify_user_form
+  - active_loop: identify_user_form
+  - slot_was_set:
+    - requested_slot: Jisoo
+  - slot_was_set:
+    - requested_slot: Kim
+  - active_loop: null
+  - action: user_identification
+  - action: utter_identified_user
+  - action: utter_check_genre
+  - intent: deny
+  - action: utter_movie_genre
+  - intent: movie_genre
+    entities:
+    - movie_genre: war
+  - slot_was_set:
+    - movie_genre: war
+  - slot_was_set:
+    - requested_slot: war
+  - action: action_confirm_movie_genre
+  - action: action_personalized_recommendation_genre
+  - action: utter_check
+  - intent: affirm
+  - action: utter_goodbye
+  - user: |-
+      bye
+  - action: action_restart  # predicted: action_personalized_recommendation_genre
+- story: deny_personalized_different_genre test (.\tests\test_stories.yml)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - user: |-
+      Can you recommend me a movie?
+  - action: utter_movie_recommendation_path  # predicted: action_default_fallback
+  - action: utter_personalization
+  - intent: personalized_recommendation
+  - action: utter_check_profile
+  - action: identify_user_form
+  - active_loop: identify_user_form
+  - slot_was_set:
+    - requested_slot: Alexia
+  - slot_was_set:
+    - requested_slot: Mathiopoulou
+  - active_loop: null
+  - action: user_identification
+  - action: utter_identified_user
+  - action: utter_check_genre
+  - intent: deny
+  - action: utter_movie_genre
+  - intent: movie_genre
+    entities:
+    - movie_genre: musical
+  - slot_was_set:
+    - movie_genre: musical
+  - slot_was_set:
+    - requested_slot: musical
+  - action: action_confirm_movie_genre
+  - action: action_personalized_recommendation_genre
+  - action: utter_check
+  - intent: deny
+  - action: utter_second_recommendation
+  - action: action_personalized_recommendation_genre
+  - action: utter_check
+  - intent: affirm
+  - action: utter_goodbye
+  - user: |-
+      bye
+  - action: action_restart  # predicted: action_default_fallback

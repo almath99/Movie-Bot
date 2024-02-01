@@ -1,0 +1,28 @@
+{
+  "movie_genre": {
+    "precision": 1.0,
+    "recall": 0.9819819819819819,
+    "f1-score": 0.9909090909090909,
+    "support": 111,
+    "confused_with": {}
+  },
+  "micro avg": {
+    "precision": 1.0,
+    "recall": 0.9819819819819819,
+    "f1-score": 0.9909090909090909,
+    "support": 111
+  },
+  "macro avg": {
+    "precision": 1.0,
+    "recall": 0.9819819819819819,
+    "f1-score": 0.9909090909090909,
+    "support": 111
+  },
+  "weighted avg": {
+    "precision": 1.0,
+    "recall": 0.9819819819819819,
+    "f1-score": 0.9909090909090909,
+    "support": 111
+  },
+  "accuracy": 0.9987397605545053
+}

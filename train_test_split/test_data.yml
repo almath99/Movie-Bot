@@ -1,0 +1,119 @@
+version: "3.1"
+nlu:
+- intent: goodbye
+  examples: |
+    - Have a great day
+    - good night
+    - goodbye
+    - Bye for now
+    - bb
+    - see ya
+- intent: greet
+  examples: |
+    - Ahoy
+    - hello
+    - hey there
+    - hey dude
+    - let's go
+    - hi there
+- intent: thank
+  examples: |
+    - Many thanks
+    - Appreciate it
+    - thanks
+    - Much appreciated
+    - thank you man
+    - You rock
+    - thank you so much
+- intent: request_sign_up
+  examples: |
+    - Is there a registration form?
+    - create account
+    - How do I get started?
+    - I'm interested in signing up
+    - create an account
+    - wanna sign up
+- intent: request_identify
+  examples: |
+    - Confirm my profile
+    - profile identification
+    - I want you to identify me
+    - Can you see if I already have an account?
+    - Locate existing account
+    - Identify profile
+    - Identify me
+- intent: affirm
+  examples: |
+    - affirmative
+    - correct
+    - I like it
+    - That works
+    - yes
+    - I like this recommendation
+    - Absolutely
+- intent: deny
+  examples: |
+    - no way
+    - No, something different
+    - that doesn't work for me
+    - don't like that
+    - I disagree
+    - i hate this movie
+    - can you recommend me something else?
+    - already watched that
+- intent: ask_movie_recommendation
+  examples: |
+    - I'm searching for a movie.
+    - wanna watch a movie
+    - Any recommendations for movies?
+    - recommend me a movie to watch
+    - movie recommendation please
+    - What do you recommend watching?
+    - Looking for a new movie.
+    - a movie
+    - recommendation
+- intent: no_personalized_recommendation
+  examples: |
+    - Guest access is fine.
+    - I'm fine as an anonymous user.
+    - No need for an account right now.
+    - I want to continue as a guest.
+    - I'd rather not create a profile.
+    - No need for login.
+    - I'll explore incognito.
+    - Continue without a profile.
+    - I'm opting for guest access.
+- intent: personalized_recommendation
+  examples: |
+    - I've personalized my account settings.
+    - I've established my account preferences.
+    - I've already set my preferences.
+    - yes account
+    - I've completed my registration.
+    - I've previously personalized my account.
+    - I've already set up my account details.
+    - I've already signed up.
+    - yes profile
+    - I've done my account setup.
+    - I'm a registered member.
+- intent: movie_genre
+  examples: |
+    - a [surreal](movie_genre) film
+    - a [fantasy](movie_genre) movie
+    - a [horror](movie_genre) movie
+    - [black and white](movie_genre) movies
+    - a [silent movie](movie_genre)
+    - [biopic](movie_genre) films
+    - [mockumentary](movie_genre) films
+    - a [courtroom drama](movie_genre)
+    - [korean dramas](movie_genre)
+    - [samurai](movie_genre) movies
+    - [animated fantasy](movie_genre) films
+    - [satirical](movie_genre) films
+    - something [animated](movie_genre)
+    - [queer](movie_genre) films
+    - a [space opera](movie_genre)
+    - [danish](movie_genre) movies
+    - [funny comedies](movie_genre)
+    - [noir](movie_genre) movies
+    - [LGBTQ+](movie_genre) movies

@@ -1,0 +1,35 @@
+[
+  {
+    "text": "a silent movie",
+    "entities": [
+      {
+        "start": 2,
+        "end": 14,
+        "value": "silent movie",
+        "entity": "movie_genre"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "movie_genre",
+        "start": 2,
+        "end": 8,
+        "confidence_entity": 0.7153608798980713,
+        "value": "silent",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "LGBTQ+ movies",
+    "entities": [
+      {
+        "start": 0,
+        "end": 6,
+        "value": "LGBTQ+",
+        "entity": "movie_genre"
+      }
+    ],
+    "predicted_entities": []
+  }
+]
