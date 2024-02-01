@@ -1,0 +1,119 @@
+version: "3.1"
+nlu:
+- intent: goodbye
+  examples: |
+    - good night
+    - good by
+    - Bye for now
+    - cu
+    - Take care
+    - Sayonara
+- intent: greet
+  examples: |
+    - good evening
+    - Hiya there
+    - Hiya
+    - Good day
+    - hi bot
+    - yo
+- intent: thank
+  examples: |
+    - Appreciate it
+    - cool
+    - thanks
+    - that's cool
+    - Fantastic
+    - thank you man
+    - You're a lifesaver
+- intent: request_sign_up
+  examples: |
+    - create
+    - I want to create an account
+    - What's the process to sign up?
+    - How do I create an account?
+    - Can I register?
+    - Is there a way to register?
+- intent: request_identify
+  examples: |
+    - account identification
+    - find my profile
+    - Verify my account
+    - Identify my profile
+    - Find out if I'm registered
+    - Determine my account status
+    - I want you to identify me
+- intent: affirm
+  examples: |
+    - okie
+    - certainly
+    - yes, please
+    - I'm in
+    - yes, I like that
+    - Most definetely
+    - I like it
+- intent: deny
+  examples: |
+    - not really
+    - nah
+    - I disagree
+    - I don't like that
+    - no new recommendation
+    - Not for me
+    - No, thank you
+    - Not in the mood for that
+- intent: ask_movie_recommendation
+  examples: |
+    - movie
+    - What's a good movie to watch?
+    - recommend me a film
+    - Recommend a great film.
+    - Suggest me a film to watch.
+    - I want a movie recommendation
+    - Suggest a good movie, please.
+    - Can you recommend a film?
+    - What movies do you suggest?
+- intent: no_personalized_recommendation
+  examples: |
+    - Not interested in personalized suggestions.
+    - I prefer not to personalize.
+    - Continue without a profile.
+    - Continue without personal details.
+    - No user account required.
+    - No profile needed, I'm a guest.
+    - I'll remain anonymous.
+    - I'm fine as a guest.
+    - I don't want to sign up
+- intent: personalized_recommendation
+  examples: |
+    - My account details are already set up.
+    - member
+    - I'm a registered member.
+    - I've already signed up.
+    - I've established my account preferences.
+    - I'm a member.
+    - I've set up my profile and preferences.
+    - No, I have an account
+    - I've done my account customization.
+    - I'm among the registered users.
+    - I've created my profile.
+- intent: movie_genre
+  examples: |
+    - i want something [classic](movie_genre)
+    - [japanese](movie_genre) movies
+    - [animated](movie_genre) movies
+    - a [coming-of-age](movie_genre) movie
+    - something [animated](movie_genre)
+    - [political](movie_genre) films
+    - [adventure](movie_genre) movies
+    - [Christmas](movie_genre) favorites
+    - [spanish](movie_genre) movies
+    - [zombie](movie_genre) thrillers
+    - [biographical](movie_genre) movies
+    - [heist](movie_genre) movies
+    - [animated musicals](movie_genre)
+    - [russian](movie_genre) movies
+    - a [fantasy](movie_genre) movie
+    - [post-apocalyptic](movie_genre) movies
+    - an [action](movie_genre) movie
+    - [animated fantasy](movie_genre) films
+    - a [family](movie_genre) movie

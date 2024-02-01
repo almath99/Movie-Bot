@@ -1,0 +1,400 @@
+version: "3.1"
+nlu:
+- intent: goodbye
+  examples: |
+    - TTYL
+    - see you later
+    - Have a great day
+    - See you soon
+    - goodbye
+    - cee you later
+    - Adios
+    - bye bye
+    - Catch you later
+    - Farewell
+    - bye
+    - bb
+    - c ya
+    - see ya
+    - Until next time
+    - G'bye
+    - b
+    - see you around
+    - Have a good day
+    - See you tomorrow
+    - have a nice day
+- intent: greet
+  examples: |
+    - What's up?
+    - how's everything?
+    - Greetings
+    - moin
+    - hey dude
+    - hi
+    - hi there
+    - wassup
+    - morning
+    - hey there
+    - Hola
+    - hello
+    - Ahoy
+    - goodmorning
+    - good morning
+    - good afternoon
+    - let's go
+    - goodevening
+    - How are you doing?
+    - hello there
+    - Well, hello
+    - hey
+    - Bonjour
+    - hey bot
+    - Sup
+- intent: thank
+  examples: |
+    - Thanks a lot
+    - noice
+    - Amazing
+    - Awesome
+    - Grateful
+    - You rock
+    - Tremendous
+    - that's great
+    - Many thanks
+    - Brilliant
+    - Much appreciated
+    - Outstanding
+    - great
+    - Cheers
+    - Thanks a bunch
+    - so cool
+    - Perfect
+    - Superb
+    - thanks man
+    - Super helpful
+    - you saved me
+    - nice
+    - thank you
+    - That's awesome
+    - thank you so much
+    - You're the best
+- intent: request_sign_up
+  examples: |
+    - sign up
+    - I want to become a user
+    - I'm looking to join
+    - create account
+    - Where do I sign up?
+    - I would like to sign up
+    - can I sign up?
+    - How do I get started?
+    - Can I create an account?
+    - How can I get an account?
+    - Want to become a member
+    - become user
+    - wanna sign up
+    - I would like to create an account
+    - Looking for signup information
+    - Is there a way to become a user?
+    - Is there a registration form?
+    - sign in
+    - Interested in creating an account
+    - How do I become a member?
+    - Is there a signup option?
+    - I'm interested in signing up
+    - create an account
+    - What are the steps to create an account?
+    - I want to sign up
+    - Seeking access, how?
+    - Join the platform
+    - want an account
+- intent: request_identify
+  examples: |
+    - Identify accound
+    - Verify my profile existence
+    - Check my profile
+    - profile identification
+    - Have I already created a profile?
+    - Identify profile
+    - Do I have a profile?
+    - See if I'm in the system
+    - Locate existing account
+    - Identify my account
+    - Search for my account
+    - do I have an account?
+    - I want identification
+    - Confirm my identity
+    - Have I already created an account?
+    - I need to be identified
+    - identify
+    - Check if I'm registered
+    - Do I exist in the system?
+    - Search for my profile
+    - Check for my account
+    - Locate my profile
+    - Can you see if I already have an account?
+    - Validate my account status
+    - Confirm my profile
+    - Identify me
+    - Look up my profile
+- intent: affirm
+  examples: |
+    - Absolutely
+    - I like that
+    - k
+    - correct
+    - sounds good
+    - yes
+    - Definetely
+    - Sure thing
+    - That's right
+    - sure
+    - I like this recommendation
+    - ok
+    - Absolutely right
+    - that sounds good
+    - By all means
+    - Agreed
+    - of course
+    - indeed
+    - Absolutely yes
+    - Very well
+    - yup
+    - okay
+    - yeah
+    - That works
+    - affirmative
+    - Positevely
+    - Sure, I do
+    - y
+    - Without a doubt
+- intent: deny
+  examples: |
+    - don't like that
+    - n
+    - can you recommend me something else?
+    - I'm not into that
+    - no
+    - I hate that
+    - I'd rather not
+    - I hate it
+    - not my cup of tea
+    - that doesn't work for me
+    - no way
+    - not a fan
+    - never
+    - hate this
+    - I'll pass
+    - i hate this movie
+    - negative
+    - nope
+    - I don't like it
+    - I don't think so
+    - already watched that
+    - I'll skip that
+    - I've already watched that
+    - No, something different
+    - I'm not feeling that
+    - I'm not interested
+    - No, I'm looking for other options
+    - Not my style
+    - no, something else?
+    - Can you suggest something else?
+    - absolutely not
+    - I don't like these movies
+- intent: ask_movie_recommendation
+  examples: |
+    - Searching for a movie recommendation.
+    - a movie recommendation
+    - wanna watch a movie
+    - Recommend a great movie.
+    - Looking for a movie to watch.
+    - suggest a good movie
+    - Seeking a film recommendation.
+    - What's your movie suggestion?
+    - recommend me a good movie
+    - can I have a movie recommendation?
+    - Can you suggest a movie to watch?
+    - I want to watch a movie
+    - Any good movies out there?
+    - Any movie suggestions?
+    - What do you recommend watching?
+    - Any good movie recommendations?
+    - movie recommendation
+    - can you tell me a movie to watch?
+    - Recommend a good film.
+    - recommendation please
+    - Looking for a suggestion.
+    - i want a new movie recommendation
+    - can you recommend me a movie?
+    - Looking for a new movie.
+    - a movie
+    - can you suggest me a good movie to watch?
+    - recommend me a movie to watch
+    - movie recommendation please
+    - I'm searching for a movie.
+    - can I have a recommendation?
+    - Any recommendations for movies?
+    - recommendation
+- intent: no_personalized_recommendation
+  examples: |
+    - Just give me general recommendations.
+    - Just browsing without an account.
+    - I'm a visitor for now.
+    - I'm fine as an anonymous user.
+    - guest
+    - No need for an account right now.
+    - Continue without an account.
+    - No need for login.
+    - I don't have an account
+    - I'm fine without personalization.
+    - I'm opting for guest access.
+    - I'll proceed as a guest.
+    - as a guest
+    - I'll browse without signing in.
+    - a gues
+    - Exploring without an account.
+    - No profile
+    - I'll go without a user account.
+    - I don't want to create a profile.
+    - I want a general experience.
+    - No personalized recommendations for me.
+    - I'd rather not create a profile.
+    - No account
+    - Not interested in creating a profile.
+    - I prefer to browse without an account.
+    - don't want to create an account
+    - Skip creating a profile.
+    - Guest browsing.
+    - No sign-up, I'll explore.
+    - Guest access is fine.
+    - I'll remain unregistered.
+    - Just browsing as a guest.
+    - I want to continue as a guest.
+    - No need for a user profile.
+    - I prefer not to personalize my experience.
+    - Just exploring as a guest.
+    - I'll explore incognito.
+- intent: personalized_recommendation
+  examples: |
+    - My profile has been set up.
+    - I've already tailored my recommendations.
+    - I've completed my profile.
+    - I've previously personalized my experience.
+    - I've already customized my experience.
+    - My details are already saved.
+    - I've logged in previously.
+    - I've registered earlier.
+    - I've already set my preferences.
+    - My account has already been personalized.
+    - I've previously personalized my account.
+    - I want personalized suggestions.
+    - yes profile
+    - I'm signed up already.
+    - already signed up
+    - No, I already have an account
+    - yes account
+    - My preferences are already saved.
+    - I have an existing account.
+    - profile
+    - I've done my account setup.
+    - I have account
+    - I've joined before.
+    - I've already configured my profile.
+    - account
+    - I already have an account
+    - I'm part of the registered users.
+    - I'm a registered user.
+    - I've completed my registration.
+    - already member
+    - I've created a profile.
+    - Already registered.
+    - I've already personalized my experience.
+    - I have an account
+    - I've personalized my account settings.
+    - I've already set up my account details.
+    - I've personalized my preferences.
+    - I'm a returning user.
+    - My account is active.
+    - I've signed up and personalized my account.
+    - I've set up my profile.
+    - I've customized my account.
+    - I'm in the system.
+    - I want recommendations tailored to me.
+    - I've already personalized my choices.
+- intent: movie_genre
+  examples: |
+    - a [spy](movie_genre) film
+    - a [sci-fi](movie_genre) film
+    - [classic](movie_genre) favorites
+    - [romance](movie_genre) movies
+    - a [comedy](movie_genre) movie
+    - [satirical](movie_genre) films
+    - [noir](movie_genre) movies
+    - a [space opera](movie_genre)
+    - [black and white](movie_genre) movies
+    - [LGBTQ+](movie_genre) movies
+    - a [music documentary](movie_genre)
+    - a [drama](movie_genre) movie
+    - a [war](movie_genre) movie
+    - [futuristic](movie_genre) films
+    - [drama](movie_genre)
+    - a [surreal](movie_genre) film
+    - [mystery](movie_genre) films
+    - [romcom](movie_genre)
+    - [sci-fi](movie_genre)
+    - [Haloween](movie_genre)
+    - [crime](movie_genre)
+    - a [creature-feature](movie_genre) film
+    - [korean](movie_genre) movies
+    - [british](movie_genre) movies
+    - [drama](movie_genre) movies
+    - [psychological thrillers](movie_genre)
+    - something [heartwarming](movie_genre)
+    - a [horror](movie_genre) movie
+    - a [romantic](movie_genre) movie
+    - [adventure tales](movie_genre)
+    - [korean drama](movie_genre) movies
+    - [fairy tale](movie_genre) movies
+    - [funny comedies](movie_genre)
+    - [science fiction](movie_genre) movies
+    - [sports](movie_genre) movies
+    - [horror](movie_genre)
+    - [action](movie_genre)
+    - [samurai](movie_genre) movies
+    - [historical](movie_genre) movies
+    - a [western](movie_genre) movie
+    - [documentary](movie_genre)
+    - [fantasy](movie_genre)
+    - i want to watch something [funny](movie_genre)
+    - [danish](movie_genre) movies
+    - [mockumentary](movie_genre) films
+    - [musical](movie_genre)
+    - [comedy](movie_genre)
+    - a [courtroom drama](movie_genre)
+    - something with [superheroes](movie_genre)
+    - a [family-friendly](movie_genre) movie
+    - [adventure](movie_genre)
+    - [french](movie_genre) movies
+    - [apocalyptic](movie_genre) movies
+    - [thriller](movie_genre)
+    - [Christmas](movie_genre)
+    - [queer](movie_genre) films
+    - a [coming-of-age comedy](movie_genre)
+    - a [musical](movie_genre) film
+    - a [Christmas](movie_genre) movie
+    - [silent](movie_genre) movies
+    - [greek](movie_genre) movies
+    - [paranormal](movie_genre) movies
+    - a [silent movie](movie_genre)
+    - [german](movie_genre) movies
+    - [korean dramas](movie_genre)
+    - something with [aliens](movie_genre)
+    - something with [zombies](movie_genre)
+    - a [time-travel](movie_genre) film
+    - a [coming-of-age drama](movie_genre)
+    - [romantic](movie_genre)
+    - a [dark comedy](movie_genre) film
+    - [biopic](movie_genre) films
+    - [family](movie_genre)
+    - something with [action](movie_genre)

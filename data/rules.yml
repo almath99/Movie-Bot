@@ -25,4 +25,3 @@ rules:
     - action: utter_identification
     - action:  identify_user_form
     - active_loop:  identify_user_form
-

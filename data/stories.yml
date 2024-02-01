@@ -46,7 +46,7 @@ stories:
   - active_loop: null
   - action: action_create_user_profile  
   - action: utter_aknowledge_info
-  - action: utter_goodbye
+  - action: utter_continue
   - intent: goodbye
   - action: action_restart
 
@@ -66,8 +66,7 @@ stories:
   - active_loop: null
   - action: user_identification
   - action: utter_identified_user
-  - intent: thank
-  - action: utter_goodbye
+  - action: utter_continue
   - intent: goodbye
   - action: action_restart
 
@@ -78,8 +77,16 @@ stories:
   - action: utter_greet
   - intent: ask_movie_recommendation
   - action: utter_movie_recommendation_path
-  - action: utter_personalization
-  - intent: no_personalized_recommendation
+  - action: utter_check_profile
+  - action: identify_user_form
+  - active_loop: identify_user_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - requested_slot: last_name
+  - active_loop: null
+  - action: user_identification
+  - action: utter_identified_user
   - action: utter_movie_genre
   - intent: movie_genre
     entities:
@@ -103,8 +110,16 @@ stories:
   - action: utter_greet
   - intent: ask_movie_recommendation
   - action: utter_movie_recommendation_path
-  - action: utter_personalization
-  - intent: no_personalized_recommendation
+  - action: utter_check_profile
+  - action: identify_user_form
+  - active_loop: identify_user_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - requested_slot: last_name
+  - active_loop: null
+  - action: user_identification
+  - action: utter_identified_user
   - action: utter_movie_genre
   - intent: movie_genre
     entities:
@@ -126,197 +141,143 @@ stories:
   - action: action_restart
 
 
-- story: personalized_recommendation  
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: ask_movie_recommendation
-  - action: utter_movie_recommendation_path
-  - action: utter_personalization
-  - intent: personalized_recommendation
-  - action: utter_check_profile
-  - action: identify_user_form
-  - active_loop: identify_user_form
-  - slot_was_set:
-    - requested_slot: name
-  - slot_was_set:
-    - requested_slot: last_name
-  - active_loop: null
-  - action: user_identification
-  - action: utter_identified_user
-  - action: utter_check_genre
-  - intent: affirm
-  - action: action_personalized_recommendation
-  - action: utter_check
-  - or:
-    - intent: affirm
-    - intent: thank
-  - action: utter_goodbye
-  - intent: goodbye
-  - action: action_restart
+# - story: personalized_recommendation  
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: ask_movie_recommendation
+#   - action: utter_movie_recommendation_path
+#   - action: utter_personalization
+#   - intent: personalized_recommendation
+#   - action: utter_check_profile
+#   - action: identify_user_form
+#   - active_loop: identify_user_form
+#   - slot_was_set:
+#     - requested_slot: name
+#   - slot_was_set:
+#     - requested_slot: last_name
+#   - active_loop: null
+#   - action: user_identification
+#   - action: utter_identified_user
+#   - action: utter_check_genre
+#   - intent: affirm
+#   - action: action_personalized_recommendation
+#   - action: utter_check
+#   - or:
+#     - intent: affirm
+#     - intent: thank
+#   - action: utter_goodbye
+#   - intent: goodbye
+#   - action: action_restart
 
 
-- story: deny_personalized_recommendation
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: ask_movie_recommendation
-  - action: utter_movie_recommendation_path
-  - action: utter_personalization
-  - intent: personalized_recommendation
-  - action: utter_check_profile
-  - action: identify_user_form
-  - active_loop: identify_user_form
-  - slot_was_set:
-    - requested_slot: name
-  - slot_was_set:
-    - requested_slot: last_name
-  - active_loop: null
-  - action: user_identification
-  - action: utter_identified_user
-  - action: utter_check_genre
-  - intent: affirm
-  - action: action_personalized_recommendation
-  - action: utter_check
-  - intent: deny
-  - action: utter_second_recommendation
-  - action: action_personalized_recommendation
-  - action: utter_check
-  - or:
-    - intent: affirm
-    - intent: thank
-  - action: utter_goodbye
-  - intent: goodbye
-  - action: action_restart
+# - story: deny_personalized_recommendation
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: ask_movie_recommendation
+#   - action: utter_movie_recommendation_path
+#   - action: utter_personalization
+#   - intent: personalized_recommendation
+#   - action: utter_check_profile
+#   - action: identify_user_form
+#   - active_loop: identify_user_form
+#   - slot_was_set:
+#     - requested_slot: name
+#   - slot_was_set:
+#     - requested_slot: last_name
+#   - active_loop: null
+#   - action: user_identification
+#   - action: utter_identified_user
+#   - action: utter_check_genre
+#   - intent: affirm
+#   - action: action_personalized_recommendation
+#   - action: utter_check
+#   - intent: deny
+#   - action: utter_second_recommendation
+#   - action: action_personalized_recommendation
+#   - action: utter_check
+#   - or:
+#     - intent: affirm
+#     - intent: thank
+#   - action: utter_goodbye
+#   - intent: goodbye
+#   - action: action_restart
 
 
-- story: personalized_different_genre  
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: ask_movie_recommendation
-  - action: utter_movie_recommendation_path
-  - action: utter_personalization
-  - intent: personalized_recommendation
-  - action: utter_check_profile
-  - action: identify_user_form
-  - active_loop: identify_user_form
-  - slot_was_set:
-    - requested_slot: name
-  - slot_was_set:
-    - requested_slot: last_name
-  - active_loop: null
-  - action: user_identification
-  - action: utter_identified_user
-  - action: utter_check_genre
-  - intent: deny
-  - action: utter_movie_genre
-  - intent: movie_genre
-    entities:
-    - movie_genre  
-  - slot_was_set:
-    - requested_slot: movie_genre
-  - action: action_confirm_movie_genre
-  - action: action_personalized_recommendation_genre
-  - action: utter_check
-  - or:
-    - intent: affirm
-    - intent: thank
-  - action: utter_goodbye
-  - intent: goodbye
-  - action: action_restart
+# - story: personalized_different_genre  
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: ask_movie_recommendation
+#   - action: utter_movie_recommendation_path
+#   - action: utter_personalization
+#   - intent: personalized_recommendation
+#   - action: utter_check_profile
+#   - action: identify_user_form
+#   - active_loop: identify_user_form
+#   - slot_was_set:
+#     - requested_slot: name
+#   - slot_was_set:
+#     - requested_slot: last_name
+#   - active_loop: null
+#   - action: user_identification
+#   - action: utter_identified_user
+#   - action: utter_check_genre
+#   - intent: deny
+#   - action: utter_movie_genre
+#   - intent: movie_genre
+#     entities:
+#     - movie_genre  
+#   - slot_was_set:
+#     - requested_slot: movie_genre
+#   - action: action_confirm_movie_genre
+#   - action: action_personalized_recommendation_genre
+#   - action: utter_check
+#   - or:
+#     - intent: affirm
+#     - intent: thank
+#   - action: utter_goodbye
+#   - intent: goodbye
+#   - action: action_restart
   
 
-- story: deny_personalized_different_genre  
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: ask_movie_recommendation
-  - action: utter_movie_recommendation_path
-  - action: utter_personalization
-  - intent: personalized_recommendation
-  - action: utter_check_profile
-  - action: identify_user_form
-  - active_loop: identify_user_form
-  - slot_was_set:
-    - requested_slot: name
-  - slot_was_set:
-    - requested_slot: last_name
-  - active_loop: null
-  - action: user_identification
-  - action: utter_identified_user
-  - action: utter_check_genre
-  - intent: deny
-  - action: utter_movie_genre
-  - intent: movie_genre
-    entities:
-    - movie_genre  
-  - slot_was_set:
-    - requested_slot: movie_genre
-  - action: action_confirm_movie_genre
-  - action: action_personalized_recommendation_genre
-  - action: utter_check
-  - intent: deny
-  - action: utter_second_recommendation
-  - action: action_personalized_recommendation_genre
-  - action: utter_check
-  - or:
-    - intent: affirm
-    - intent: thank
-  - action: utter_goodbye
-  - intent: goodbye
-  - action: action_restart
-
-
-
-
-#- story: actual_movie_recommendation
-#  steps:
-#  - intent: greet
-#  - action: utter_greet
-#  - intent: ask_movie_recommendation
-#  - action: utter_movie_recommendation_path
-#  - action: utter_movie_genre
-#  - intent: movie_genre
-#    entities:
-#    - movie_genre
-#  - slot_was_set:
-#    - requested_slot: movie_genre
-#  - action: action_confirm_movie_genre
-#  - action: action_make_movie_recommendation
-#  - action: utter_check
-#  - or:
-#    - intent: affirm
-#    - intent: thank
-#  - action: utter_goodbye
-#  - intent: goodbye
-#  - action: action_restart
-
-
-#- story: deny_movie_recommendation
-#  steps:
-#  - intent: greet
-#  - action: utter_greet
-#  - intent: ask_movie_recommendation
-#  - action: utter_movie_recommendation_path
-#  - action: utter_movie_genre
-#  - intent: movie_genre
-#    entities:
-#    - movie_genre
-#  - slot_was_set:
-#    - requested_slot: movie_genre
-#  - action: action_confirm_movie_genre
-#  - action: action_make_movie_recommendation
-#  - action: utter_check
-#  - intent: deny
-#  - action: utter_second_recommendation
-#  - action: action_make_movie_recommendation
-#  - action: utter_check
-#  - or:
-#    - intent: affirm
-#    - intent: thank
-#  - action: utter_continue
-#  - intent: deny
-#  - action: utter_goodbye
-#  - intent: goodbye
-#  - action: action_restart
+# - story: deny_personalized_different_genre  
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: ask_movie_recommendation
+#   - action: utter_movie_recommendation_path
+#   - action: utter_personalization
+#   - intent: personalized_recommendation
+#   - action: utter_check_profile
+#   - action: identify_user_form
+#   - active_loop: identify_user_form
+#   - slot_was_set:
+#     - requested_slot: name
+#   - slot_was_set:
+#     - requested_slot: last_name
+#   - active_loop: null
+#   - action: user_identification
+#   - action: utter_identified_user
+#   - action: utter_check_genre
+#   - intent: deny
+#   - action: utter_movie_genre
+#   - intent: movie_genre
+#     entities:
+#     - movie_genre  
+#   - slot_was_set:
+#     - requested_slot: movie_genre
+#   - action: action_confirm_movie_genre
+#   - action: action_personalized_recommendation_genre
+#   - action: utter_check
+#   - intent: deny
+#   - action: utter_second_recommendation
+#   - action: action_personalized_recommendation_genre
+#   - action: utter_check
+#   - or:
+#     - intent: affirm
+#     - intent: thank
+#   - action: utter_goodbye
+#   - intent: goodbye
+#   - action: action_restart

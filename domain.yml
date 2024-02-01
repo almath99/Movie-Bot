@@ -132,24 +132,6 @@ slots:
       entity: movie_genre
       actions: utter_movie_genre
 
-  movie_rate:
-    type: text
-    influence_conversation: false 
-    mappings:
-    - type: from_entity
-      entity: movie_rate
-      actions: utter_movie_rate
-
-  rate:
-   type: float
-   min_value: 0
-   max_value: 10
-   influence_conversation: false
-   mappings:
-   - type: from_entity
-     entity: rate
-     actions: utter_rate
-
 
 
 responses:
@@ -158,7 +140,7 @@ responses:
   utter_goodbye:
   - text: Have fun! Goodbye!
   utter_continue:
-  - text: Do you have any other questions?
+  - text: To continue and ask for a movie recommendation or anything else, say "bye" to restart the conversation.
   utter_signup:
   - text: You chose to sign up.
   utter_personalization:
@@ -168,21 +150,7 @@ responses:
   utter_identification:
   - text:  Let me search for your existing account.
   utter_identified_user:
-  - text: Hi {id_name} {id_last_name}! You're identified, let's continue!
-  utter_update_profile:
-  - text: Sure, you want to update your profile.
-  utter_ask_new_name:
-  - text: What's your new name?
-  utter_ask_new_last_name:
-  - text: What's your new last name?
-  utter_ask_new_age:
-  - text: What's your new age?
-  utter_ask_new_favourite_genre:
-  - text: What's your new favorite movie genre?
-  utter_rate_form:
-  - text: You've chosen to rate a movie.
-  utter_movie_rate:
-  - text: Which movie do you want to rate?
+  - text: Hi {id_name} {id_last_name}! You're identified!
   utter_movie_recommendation_path:
   - text: You've selected the movie recommendation path.
   utter_second_recommendation:
@@ -192,10 +160,6 @@ responses:
   - text: What movie genre do you like?
   utter_check_genre:
   - text: Want a movie recommendation in your favorite genre?
-  utter_rate_value:
-  - text: How would you rate this {movie} from 0 to 10?
-  utter_rate_recognition:
-  - text: So, you've rated the {movie} as {rate}, correct?
   utter_ask_name:
   - text: Can you please tell me your first name?
   utter_ask_last_name:
@@ -205,13 +169,13 @@ responses:
   utter_ask_id_last_name:
   - text: Can you please tell me your last name?
   utter_ask_hobby:
-  - text: And, {name}, could you also tell me one hobby or interest of yours?
+  - text: Thank you {name}! Now, could you also tell me one hobby or interest of yours?
   utter_ask_age:
   - text: Now, can you tell me your age?
   utter_ask_favourite_genre:
   - text: Lastly, {name}, what's your favorite movie genre?
   utter_aknowledge_info:
-  - text: Thanks {name}!
+  - text: Thanks {name}! Your account has been created!
   utter_check:
   - text: Do you like this recommendation?
 

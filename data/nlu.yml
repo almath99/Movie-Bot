@@ -468,6 +468,8 @@ nlu:
     - [political](movie_genre) films
     - a [music documentary](movie_genre)
     - [psychological thrillers](movie_genre)
+    - [black and white](movie_genre) movies
+    - [silent](movie_genre) movies
     - something with [aliens](movie_genre)
     - [mockumentary](movie_genre) films
     - a [silent movie](movie_genre)
@@ -495,7 +497,18 @@ nlu:
     - [LGBTQ+](movie_genre) movies
     - [Christmas](movie_genre) favorites
     - [zombie](movie_genre) thrillers
+    - [korean](movie_genre) movies
+    - [korean drama](movie_genre) movies
+    - [korean dramas](movie_genre) 
+    - [japanese](movie_genre) movies
+    - [spanish](movie_genre) movies
+    - [french](movie_genre) movies
+    - [german](movie_genre) movies
+    - [greek](movie_genre) movies
+    - [british](movie_genre) movies
+    - [russian](movie_genre) movies
+    - [danish](movie_genre) movies
+    - [samurai](movie_genre) movies
     - [funny comedies](movie_genre)
     - [classic](movie_genre) favorites
     - [adventure tales](movie_genre)
-
